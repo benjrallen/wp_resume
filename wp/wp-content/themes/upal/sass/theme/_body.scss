@@ -1,0 +1,49 @@
+//
+// CSS for the specific theme body
+//
+
+
+#content{
+	//@include pie;
+	
+	& #contentTop{
+		padding-top: $header-height;
+		//min-height:400px;
+		//background: #bad;
+		@include pie;		
+		@include margin-trailer(2);
+		border-bottom: 1px solid $box-bg;
+		
+		@include background( linear-gradient(
+			top,
+			$base-bg 0%,
+			$base-bg 80px,
+			//#ccc 98%,
+			darken($base-grey, 20%) 95%,
+			darken($base-grey, 25%) 100%
+		));
+
+		@include box-shadow(
+			darken($base-grey, 30%) 0 0px 36px 0
+//			inset darken($base-grey, 30%) 0 -36px 36px -36px
+
+		);
+
+		
+		& .bgNoise{
+			position: absolute;
+		}
+				
+		&.fp{
+			padding-top: $header-height + 24px;
+			padding-bottom: 24px;
+		}
+	}
+	
+		
+	//@include box-shadow( 
+	//	darken( $base-bg, 50% ) 0 20px 25px -20px, 
+	//	darken( $base-bg, 50% ) -10px 0 35px -30px,
+	//	darken( $base-bg, 50% ) 10px 0 35px -30px
+	//);
+}

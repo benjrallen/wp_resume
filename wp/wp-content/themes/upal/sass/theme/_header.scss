@@ -1,0 +1,172 @@
+//
+// CSS for the specific theme header
+//
+
+#header{
+	width: 100%;
+	position: absolute;
+	z-index: 10;
+	top: 0;	
+	height: $header-height;
+	padding-bottom: 18px;
+	background: url('../images/header-shadow-32.png') no-repeat center bottom;
+	min-width: $base-width;
+		
+	@include serif;
+	
+	& #headShadow{
+		width: 100%;
+		height: 16px;
+		position: absolute;
+		bottom: -16px;
+	}
+	
+	& h1, & h2{
+		position: relative;
+		//width: 100%;
+		top: 0;
+		left: 0;
+		height: 100px;
+		width: 98px;
+		display: block;
+		z-index: 2;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	
+	& a#logo{
+		display: block;
+		width: 100%;
+		height: 100%;
+		text-align: center;
+		position: relative;
+		@include single-transition( opacity, $base-transition-time, ease-in-out );
+		
+		&:hover{
+			@include opacity($base-hover-opacity);
+		}
+		
+		& div{
+			position: absolute;
+			
+			&.front{
+				height: 100%;
+				width: 100%;
+				top: 0;
+				left: 0;
+				z-index: 1;
+				background: $base-button-color;
+				@include single-box-shadow( darken( $base-button-color, 6% ), 0, 0, 13px, 2px, true);
+			}
+			
+			&.back{
+				height: 6px;
+				width: 105px;
+				bottom: 0;
+				left: -4px;
+				z-index: 0;
+				@include main-sprite;
+				background-position: 0 0;
+			}
+		}
+		
+		& span{
+			display: inline-block;
+			vertical-align: middle;
+		}
+		& .line{
+			width: 1px;
+			margin-left: -1px;
+			height: 100%;
+		}
+		& .logoName{
+			height: 28px;
+			width: 80px;
+			@include main-sprite;
+			background-position: 0 -12px;
+			text-indent: -9999em;
+		}
+	}
+	
+	& nav{
+		display:inline-block;
+		cursor: default;
+		width: 50%;
+		position: absolute;
+		top: 0;
+		z-index: 2;
+		text-transform: uppercase;
+		
+		& div{
+			@include padding-leader( 2.25 );
+			border-bottom: 1px solid lighten( $base-grey, 50% );
+		}
+		
+		$nav-shadow: #ccc;
+		
+		&#accessLeft{
+			@include float-left;
+			text-align: right;
+			left: 0;
+			
+			& div{
+				margin-right: 6.25em;
+				@include single-box-shadow( $nav-shadow, -10px, 0, 18px, -6px );
+			}
+		}
+		&#accessRight{
+			@include float-right;
+			text-align: left;
+			right: 0;
+			
+			& div{
+				margin-left: 6.25em;
+				@include single-box-shadow( $nav-shadow, 10px, 0, 18px, -6px );
+			}
+		}
+		
+		& .menu{
+			@include inline-block-list;
+			border-bottom: 1px solid $base-grey;
+			
+			
+			& li{
+				@include single-transition( all, $base-transition-time, ease-in-out );
+											
+				&.menu-item-last{
+	
+				}
+				
+				&:hover{
+					
+				}
+				
+				& a{
+					text-decoration:none;
+					color: $nav-link-color;
+					padding-left: 0.5em;
+					padding-right: 0.5em;
+					
+					&:hover, &:active{
+						color: darken( $base-button-color, 20% );
+					}
+				}
+				
+				&.current_page_item{
+					
+					& a{
+						color: darken( $base-button-color, 20% );
+					}
+				}
+	
+			}
+		}
+		
+	
+	}
+	
+	
+}
+
+
+

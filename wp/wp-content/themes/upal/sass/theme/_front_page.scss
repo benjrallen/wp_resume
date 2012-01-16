@@ -1,0 +1,61 @@
+article#front-page-entry.hentry{
+	
+	border-right: 1px solid $box-bg;
+	
+	
+	//margin:0;
+	//@include adjust-font-size-to( 20px, 2.5 );
+	//font-weight: 300;	
+	@include padding-trailer( 0 );
+	@include margin-trailer( 2 );
+
+	& .more-link{
+		bottom: -1.5em;
+	}	
+
+	@include float-left;
+
+	width: 461px;
+
+	padding-right: 0;
+
+	@include box-shadow(
+		darken($base-grey, 0%) 9px 0 12px -12px
+//		inset darken($base-grey, 30%) 0 -36px 36px -36px
+
+	);
+
+
+	& p{
+		margin-top: 0;
+		margin-bottom:0;
+		line-height: inherit;
+	}
+	
+	& .entry-content{
+			border-right: 1px solid $base-grey;
+			padding-right: 35px;
+			@include padding-trailer( 1 );
+
+	}
+	
+}
+
+article#front-page-entry.hentry, #frontPageSidebar{
+	display: inline-block;
+	vertical-align: top;
+}
+
+#frontPageSidebar{
+	width: 460px;
+	height: 100%;
+	
+	min-height: 400px;
+	
+	//border-left: 1px solid $base-grey;
+	
+	
+
+	
+	
+}

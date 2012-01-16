@@ -1,0 +1,114 @@
+//
+// CSS for the specific theme page / post styles
+//
+
+
+/** Default Page Template **/
+
+$art-padd: 35px;
+
+article.hentry{
+	
+	padding-left: $art-padd;
+	padding-right: $art-padd;
+	@include padding-trailer( 2 );
+	@include margin-trailer;
+	
+	position: relative;
+	
+	& header.entry-title{
+		
+		& h1, & h2{
+			color: $base-button-color;	
+		}
+		
+		
+		& h4{
+
+		}
+	}
+	
+	.entry-content{
+		
+		@include adjust-font-size-to( 14px, 1.25 );
+		//position: relative;
+		
+		& .more-link{
+			position: absolute;
+			bottom: -1em;
+			right: $art-padd;
+		}
+		
+		//.pic{
+		//	//display:inline;
+		//	@include float-right;
+		//	@include margin-leader(0.5);
+		//	margin-left: 1em;
+		//	margin-bottom: 0.5em;
+		//	
+		//	& img{
+		//		display:block;
+		//		@include pie;
+		//		@include border-radius(2px);
+		//		//padding: 3px;
+		//		//background: $box-bg;
+		//		@include single-box-shadow( darken( $box-bg, 50% ), 0, 8px,6px, -5px );
+		//	}
+		//}
+
+		& h1, & h2, & h3, & h4, & h5, & h6{
+			color: darken( $base-button-color, 5% );
+		}
+
+		& h2{
+			text-transform: uppercase;
+			@include adjust-font-size-to( 19px );
+			letter-spacing: 1px;
+			
+			& span{
+				display: block;
+				font-weight: normal;
+				@include adjust-font-size-to( 8px );
+				@include margin-leader( -0.75 );
+				text-transform: none;
+				letter-spacing: 1.5px;
+			}
+		}
+		
+		& h3{
+			
+		}
+		
+		& .entry-full{
+			display: none;
+		}
+		
+	}
+	
+}
+
+
+.more-link{
+	display: block;
+	height: 25px;
+	width: 225px;
+	@include main-sprite;
+	background-position: 0 -157px;
+	text-indent: -9999em;
+	
+	&:hover{
+		background-position: 0 -221px;
+	}
+
+	@include single-transition( none );
+
+}
+
+
+/** End Default Page Template **/
+
+
+/** 404 Page Template **/
+a.home-link{ display:block; @include float-right; color: $base-color; }
+/** End 404 Page Template **/
+
