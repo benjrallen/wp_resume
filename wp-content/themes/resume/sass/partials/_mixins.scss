@@ -1,7 +1,7 @@
 
 @mixin main-sprite{
-	background-image:url("../images/main-sprite-32.png");
-	//background-image:url("../images/main-sprite-8.png");
+	//background-image:url("../images/main-sprite-32.png");
+	background-image:url("../images/main-sprite-8.png");
 	background-repeat: no-repeat;
 }
 
@@ -21,10 +21,10 @@
 	}
 }
 
-@mixin red-button( $color: $base-button-color, $contrast: $base-button-contrast ){
+@mixin theme-button( $color: $base-button-color, $contrast: $base-button-contrast ){
 	font-family: sans-serif;
 	color:#fff;
-	border:1px solid lighten( $contrast, 15% );
+	border:1px solid darken( $contrast, 15% );
 	@include pie;
 	@include border-radius( 2px );
 	background: lighten( $color, 10% );
@@ -147,7 +147,9 @@
 @mixin open-sans{
 	font-family: 'Open Sans', sans-serif;	
 }
-
+@mixin sans-serif{
+	@include open-sans;
+}
 
 //FONT STACKS
 @mixin serif{

@@ -15,7 +15,7 @@
 <!--[if IE 9 ]><html <?php language_attributes(); ?> class="no-js ie ie9 lte9"><![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!--><html <?php language_attributes(); ?> class="no-js"><!--<![endif]-->
 	<head>
-		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600,300,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600,300,700' rel='stylesheet' type='text/css'>
 		<meta charset="<?php bloginfo( 'charset' ); ?>" />
 		<title><?php
 			/*
@@ -32,12 +32,12 @@
 		<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
 
 		<script type="text/javascript">
-			Guru = new Object();
-			Guru.Url = '<?php bloginfo( 'url' ); ?>';
-			Guru.TemplateUrl = '<?php bloginfo('template_directory'); ?>';
-			Guru.isFrontPage = <?php if(is_front_page()) { echo 'true'; }else{ echo 'false'; } ?>;
-			Guru.wpVersion = '<?php echo trim(get_bloginfo("version")); ?>';
-			Guru.postID = '<?php echo get_the_ID(); ?>';
+			Ease = new Object();
+			Ease.Url = '<?php bloginfo( 'url' ); ?>';
+			Ease.TemplateUrl = '<?php bloginfo('template_directory'); ?>';
+			Ease.isFrontPage = <?php if(is_front_page()) { echo 'true'; }else{ echo 'false'; } ?>;
+			Ease.wpVersion = '<?php echo trim(get_bloginfo("version")); ?>';
+			Ease.postID = '<?php echo get_the_ID(); ?>';
 		</script>
 		
 <?php
@@ -57,26 +57,49 @@
 		<script type="text/javascript">
 			Modernizr.load([
 				{ load : ['//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js'] },
-				{ test: window.JSON, nope: Guru.TemplateUrl+'/js/json2.js' },
+				{ test: window.JSON, nope: Ease.TemplateUrl+'/js/json2.js' },
 				/* plugins.js & common.js fordevelopment */
-				{ load : Guru.TemplateUrl+'/js/plugins.js' },
-				{ load : Guru.TemplateUrl+'/js/common.js' }
+				//{ load : Ease.TemplateUrl+'/js/plugins.js' },
+				//{ load : Ease.TemplateUrl+'/js/common.js' }
 				/* concatenate and optimize seperate script files for deployment using google closure compiler (compiler.jar) in js folder */
-				//{ load : Guru.TemplateUrl+'/js/theme.js' }
+				{ load : Ease.TemplateUrl+'/js/theme.js' }
 			]);
 		</script>
 	</head>
 	<body <?php body_class(); ?>>
+
+		<div id="subwayTilesWrap">
+		  <span id="closeSubwayTiles">x<small>(close Subway Tiles)</small></span>
+		  <nav id="jsui">
+      	<header>
+      		<h4>Subway Tiles</h4>
+      	</header>
+
+      	<ul id="posts">
+      		<li><a href="#tilesEnd">#end</a></li>
+      	</ul>
+
+      	<div id="menuToggle">toggle</div>
+
+      </nav>
+		  <div id="subwayTiles"></div>
+		  
+		  <div id="tilesEnd"></div>
+    </div>
+
 		<div class="bgNoise"></div>
 		<header id="header" role="banner">
+		  <div class="bgNoise"></div>
 			<?php //get_template_part('nav','primary'); ?>
 			
 			<?php /* Our navigation menus.  If one isn't filled out, wp_nav_menu falls back to wp_page_menu.  The menu assiged to the primary position is the one used.  If none is assigned, the menu with the lowest ID is used.  */ ?>
-			<nav id="accessLeft"role="navigation">			
+			<nav id="accessLeft"role="navigation">
+			  <span class="line"></span>	
 				<?php wp_nav_menu( array( 'theme_location' => 'primary_left' ) ); ?>
 			</nav>
 
 			<nav id="accessRight"role="navigation">			
+			  <span class="line"></span>	
 				<?php wp_nav_menu( array( 'theme_location' => 'primary_right' ) ); ?>
 			</nav><!-- #access -->
 
@@ -85,12 +108,12 @@
 					<div class="front">
 						<span class="line"></span><span class="logoName"><?php bloginfo( 'name' ); ?></span>
 					</div>
-					<div class="back"></div>
+					<div class="tri left"></div>
+					<div class="tri right"></div>
 				</a>
 			<?php if (is_front_page()) { echo '</h1>'; } else { echo '</h2>'; } ?>
 			
-			<div id="headShadow"></div>
-			
+			<div id="glowWrap"><div id="headerGlow" class="wrap"><div></div></div></div>
 			<div class="clearfix"></div>
 		</header>
 		

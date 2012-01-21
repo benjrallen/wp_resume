@@ -25,46 +25,70 @@ get_header(); ?>
 
 <?php /* Sidebar before rotator on owasso */ ?>
 
+<?php /* ?>
 <div id="contentTop" class="fp">
 	<div class="bgNoise"></div>
 	<div class="wrap">
 		<?php get_template_part('front-page', 'rotator'); ?>
 	</div>
 </div>
+<?php */ ?>
 
 <div class="wrap">
 
 	<article id="front-page-entry" <?php post_class(); ?>>
 	
 	<?php if ( have_posts() ) : while( have_posts() ) : the_post(); ?>
-	
-		<div class="entry-content">			
-			<div class="entry-teaser">
+
+	  <?php
+	    if ( has_post_thumbnail() ){
+	      //print_r( get_the_post_thumbnail( $post->ID, 'page-thumb' ) );
+	      echo '<div class="fpPic">'.get_the_post_thumbnail( $post->ID, 'thumbnail' ).'</div>';
+	    }
+	  ?>
+	  
+		<div class="entry-content">
+    	  
+			  <h2 class="page-title"><?php the_title(); ?></h2>
+
 				<?php 
-					global $more;
-					$more = 0;
-					//$readMore = '<a href="'.get_permalink().'" class="base bttn page-read-more" title="Read More">Read More</a>';
-					$readMore = 'Read More';
-					the_content($readMore);
-				?>
-			</div>
-			<div class="entry-full">
-				<?php 
-					$more = 1;
-					the_content('', true);
+      		$subtitle = get_post_meta( $post->ID, 'page_subtitle', true );
+					
+					if( $subtitle )
+						echo '<h3 class="subtitle">'.$subtitle.'</h3>';
+										
+					the_content('');
 				?>
 				
-			</div>
-			
+				<div id="fpMenu">
+  				<?php wp_nav_menu( array( 'theme_location' => 'front_page_menu' ) ); ?>
+				</div>
+				  
 			<div class="clearfix"></div>
 		</div><!-- .entry-content -->
-	
+
+	  <?php
+	    //if ( has_post_thumbnail() ){
+	      //print_r( get_the_post_thumbnail( $post->ID, 'page-thumb' ) );
+	      //echo '<div class="pic">'.get_the_post_thumbnail( $post->ID, 'page-thumb' ).'</div>';
+	    //}
+
+      //print_r( ba_get_resume_href() );
+	  ?>
+	  
+	  <div class="callOut">
+	    <div class="arrow big"></div>
+	    <div class="resumeBlock">
+	      <a title="Get that resume." href="<?php echo ba_get_resume_href(); ?>" target="_blank">
+	       <span class="line2">Resume</span>
+	      </a>
+	    </div>
+	  </div>
+	  
 	<?php endwhile; endif; ?>
 	<div class="clearfix"></div>
 	
 	</article>
-
-	<?php get_template_part('front-page', 'sidebar'); ?>
 	
 </div>
 

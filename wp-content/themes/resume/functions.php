@@ -96,6 +96,7 @@ function boilerplate_setup() {
 	register_nav_menus( array(
 		'primary_left' => __( 'Primary Navigation Left', 'boilerplate' ),
 		'primary_right' => __( 'Primary Navigation Right', 'boilerplate' ),
+		'front_page_menu' => __( 'Front Page Menu', 'boilerplate' ),
 		'fp-rotate' => __( 'Front Page Banners', 'boilerplate' )
 	) );
 
@@ -557,8 +558,8 @@ if (class_exists('MultiPostThumbnails')) {
 
 //add image sizes
 add_image_size( 'page-thumb', 314, 314, false );
-add_image_size( 'project-thumb', 180, 120, true );
-add_image_size( 'banner', 938, 285, true );
+add_image_size( 'project-thumb', 100, 150, false );
+add_image_size( 'project-img', 640, 1500, false );
 
 
 //add page excerpts if necessary
@@ -593,57 +594,182 @@ function content($limit = 55) {
 //
 //	Meta Box (Class included in new post type plugin)
 //
-//if( class_exists( 'MetaBoxTemplate' )){
-//	$pageMeta = new MetaBoxTemplate(array(
-//					'page' => 'page',
-//					'id' => 'page-subtitle',
-//					'title' => 'Page Subtitle',
-//					'context' => 'normal',
-//					'priority' => 'core',
-//					'fields' => array(
-//						array(
-//							'name' => 'Subtitle: ',
-//							'id' => 'upal_page_subtitle',
-//							'type' => 'text',
-//							'std' => ''
-//						)
-//					)
-//				));
-//				
-//}
+if( class_exists( 'MetaBoxTemplate' )){
+  $pageMeta = new MetaBoxTemplate(array(
+          'page' => 'page',
+          'id' => 'page-subtitle',
+          'title' => 'Page Subtitle',
+          'context' => 'normal',
+          'priority' => 'core',
+          'fields' => array(
+            array(
+              'name' => 'Subtitle: ',
+              'id' => 'page_subtitle',
+              'type' => 'text',
+              'std' => ''
+            )
+          )
+        ));
+        
+}
 
 // only install post type if class present
-//if( class_exists( 'NewPostType' )){
-//
-//	$prefix = 'guru_';
-//
-//	NewPostType::instance()->add(array(
-//		'post_type' => $prefix.'quotes',
-//		'post_type_name' => 'Quotes',
-//		'args' => array(
-//			'rewrite' => array( 'slug' => 'quotes' ),
-//			'supports' => array( 'title', 'editor', 'thumbnail' )
-//		)
-//	))->add_meta_box(array(
-//		'id' => 'quote_link',
-//		'title' => 'Quote Links To:',
-//		'context' => 'side',
-//		'priority' => 'default',
-//		'fields' => array(
-//			array(
-//				'name' => 'Link: ',
-//				'id' => $prefix . 'quote_link',
-//				'type' => 'text',
-//				'std' => ''
-//			)
-//		)	
-//	));
-//}
+if( class_exists( 'NewPostType' )){
+
+  $prefix = 'ba_';
+
+  NewPostType::instance()->add(array(
+    'post_type' => $prefix.'work',
+    'post_type_name' => 'Works',
+    'args' => array(
+      'rewrite' => array( 'slug' => 'works' ),
+      //'has_archive' => true,
+      'supports' => array( 'title', 'editor', 'thumbnail', 'page-attributes' )
+    )
+  ))->add_meta_box(array(
+   'id' => 'work_details',
+   'title' => 'Work Link:',
+   'context' => 'side',
+   'priority' => 'default',
+   'fields' => array(
+       array(
+           'name' => 'Link Name: ',
+           'id' => $prefix . 'work_link_name',
+           'type' => 'text',
+           'std' => ''
+       ),
+       array(
+           'name' => 'Link Url: ',
+           'id' => $prefix . 'work_link_url',
+           'type' => 'text',
+           'std' => ''
+       )
+   )   
+  ));
+  
+  NewPostType::instance()->add(array(
+    'post_type' => $prefix.'place',
+    'post_type_name' => 'Places',
+    'args' => array(
+      'rewrite' => array( 'slug' => 'places' ),
+      //'rewrite' => false,
+      //'has_archive' => 'places',
+      'supports' => array( 'title', 'editor', 'thumbnail', 'page-attributes' )
+    )
+  ))->add_meta_box(array(
+   'id' => 'place_details',
+   'title' => 'Place details:',
+   'context' => 'side',
+   'priority' => 'default',
+   'fields' => array(
+       array(
+           'name' => 'Place Address: ',
+           'id' => $prefix . 'place_address',
+           'type' => 'textarea',
+           'std' => ''
+       ),
+       array(
+           'name' => 'Place Duration: ',
+           'id' => $prefix . 'place_duration',
+           'type' => 'text',
+           'std' => ''
+       )
+   )   
+  ));
+  
+}
+
+
+//used to pull pdf attachments to posts && pages
+function ba_get_images(){
+	global $post;
+	//print_r($post);
+	$imgs = get_children(array(
+		'post_parent' => $post->ID,
+		'post_status' => 'inherit',
+		'numberposts' => -1,
+		'post_type' => 'attachment',
+		'post_mime_type' => 'image',
+		'order' => 'ASC',
+		'orderby' => 'menu_order ID'
+	));
+	if( $imgs ){
+		return $imgs;
+	}
+	return false;
+}
+
+
+//used to pull pdf attachments to posts && pages
+function ba_get_resume_href(){
+  $resume_page_ID = 69;
+
+	//print_r($post);
+	$pdfs = get_children(array(
+		'post_parent' => $resume_page_ID,
+		'post_status' => 'inherit',
+		'numberposts' => 1,
+		'post_type' => 'attachment',
+		'post_mime_type' => 'application/pdf',
+		'order' => 'ASC',
+		'orderby' => 'menu_order ID'
+	));
+	if( $pdfs ){
+		//return $pdfs;
+		$href = '';
+		foreach ( $pdfs as $pdf ){
+		  //print_r( $pdf);
+		  $href = $pdf->guid;
+		}
+		return $href;
+	}
+	return false;
+}
 
 
 
+function get_location_list(){
+	$html = '<ul class="locationList">';
+	
+	$schools = 	get_posts(array(
+					'numberposts' => -1,
+					'post_type' => 'ba_place',
+					'order' => 'ASC',
+					'orderby' => 'menu_order'
+				));
+
+	
+	foreach ( $schools as $school ) {
+		$meta = get_post_custom( $school->ID );
+		$school->meta = array(
+			'ba_place_address' => $meta['ba_place_address'][0],
+			'ba_place_duration' => $meta['ba_place_duration'][0]
+		);
+		unset( $meta );
+		
+		
+		$html .= '<li class="locationItem" ease-data=\''.json_encode( $school->meta ).'\'>'.
+					'<a class="locationName" href="'.get_permalink($school->ID).'" title="'.$school->post_title.'">'.$school->post_title.'</a>';
+		
+		if ( $school->meta['ba_place_address'] )
+			$html .= '<span class="locationAddress">'.apply_filters( $school->meta['ba_place_address'] ).'</span>';
+		if ( $school->meta['ba_place_duration'] )
+			$html .= '<span class="locationDuration">'.$school->meta['ba_place_duration'].'</span>';
+		
+		$html .= '</li>';	
+		
+	}
+	
+
+	
+	$html .= '</ul>';
+
+	//$html .= '<div id="schoolJSON">'.json_encode( $schools ).'</div>';
+	
+	return $html;
+}
 
 
-/** END GuRu Theme Specific Functions **/
+/** END BA Theme Specific Functions **/
 
 ?>

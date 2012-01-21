@@ -1,29 +1,188 @@
 (function($){
 	
 	//transitionTime
-	var guruTransTime = 350,
+	var EaseTransTime = 350,
 		maxWidth = 960,
-		basePadding = 35;
+		menuWidth = 900,
+		basePadding = 35,
+		easeTiles = false,
+		isWebkit = true;
+		try{
+			WebKitPoint;
+		} catch(e) {
+			isWebkit = false;
+		}
 		
 	$(document).ready(function(){
-		console.log('hello common ready');
+		//console.log('hello common ready');
 		
-		$('html.ie').length ? Guru.ie = true : Guru.ie = false;
-		$('html.lte8').length ? Guru.lte8 = true : Guru.lte8 = false;
-		typeof WebKitPoint !== 'undefined' ? Guru.webkit = true : Guru.webkit = false;
+		$('html.ie').length ? Ease.ie = true : Ease.ie = false;
+		$('html.lte8').length ? Ease.lte8 = true : Ease.lte8 = false;
+		typeof WebKitPoint !== 'undefined' ? Ease.webkit = true : Ease.webkit = false;
 				
 		autoMenu();
-		
-        var fpRotate = new GuruRotator({
-             transitionTime: 750,
-             timeoutTime: 7000,
-             showControls: true
-         });
-         
-         pageReadMore();
+
+
+		//console.log( 'eyt', eyt );
+
+		worksPage();
+		videosPage();
+		locationsPage();
+		replaceResumeLink();
+		subwayTiles();
 	});	
+
+
 	
+	function replaceResumeLink(){
+		if( $('#resumeHref').length ){
+			var href = $('#resumeHref').text(),
+				navlinks = $('#header').find('a'),
+				link = findNavLink('resume');
+						
+			if( link ){
+				link.attr({
+					href: href,
+					target: '_blank'
+				});
+			}
+			href = null;
+			link = null;
+		}
+	}
+
+	function findNavLink( title ){
+		if( !title ) return false;
+		
+		var navlinks = $('#header').find('a'),
+			link = false;
+			
+			$.each( navlinks, function(){
+				if( $(this).text().toLowerCase() == title ){
+					link = $(this);
+					return false;
+				}
+			});
+			navlinks = null;
+			
+			return link;
+	}
+
+	function subwayTiles(){
+		//handle click on the stLink to open up the interface, but only do it for webkit cause webkit is awesome
+		var stLink = findNavLink('pictures');
+		
+		if( stLink ){
+			
+			if( !Ease.ie ){
+
+				var wrap = $('#subwayTilesWrap'),
+					speed = 250;
+
+				stLink.click( function(e){
+					//kills the href on the link
+					e.preventDefault();
+			
+					if ( !easeTiles ) {
+						easeTiles = new SyndicatedSubwayTiles({
+							wrapId: 'subwayTiles',
+							smoothScroll: true
+						});
+					}
+			
+					wrap.show( speed );
+				});
+				
+				//click x to close
+				$('#closeSubwayTiles').click(function(){
+					wrap.hide(speed);
+				});
+
+			} else {
+				stLink.attr({
+					href: 'http://subwaytiles.bennya.com',
+					target: '_blank'
+				});
+			}
+			
+		}
+		stLink = null;
+
+	}
+
 	
+	function locationsPage(){
+		if ( $('#locations').length ){
+			var eMap = new EaseMap({
+				zoom: 2,
+				streetViewControl: true,
+				fitMarkers: true,
+				//now center on tulsa cause we live in tulsa
+				centerLat: 36.153982,
+				centerLng: -95.992775,
+				dataCont: '.locationList',
+				dataBlock: '.locationItem',
+				dataAttr: 'ease-data',
+				locationKey: 'ba_place_address',
+				directionsLink: false,
+				blocksAreClickable: true
+			});
+			
+		}
+	}	
+	
+	function videosPage(){
+		if( $('#videos').length )
+			new EaseYouTubePlayer({
+				user: 'nakedincorners',
+				localCallUrl: Ease.TemplateUrl + 'js/videos.php',
+				maxResults: 6 //google limit is 50			
+			});
+	}
+	
+	function worksPage(){
+		if( $('#worksTop').length ){
+			
+	        var bttns = $('#worksTop').find('a'),
+				topOff = $('#header').outerHeight() + $('#worksTop').outerHeight();
+	
+			var bttnClick = function(e){
+				e.preventDefault();
+                
+				var href = $(this).attr('href');
+				
+				href = href.substr(1, href.length);
+                
+				var off = $("#" + href).offset();
+                
+				$('html, body').animate({scrollTop: off.top - topOff + 'px'}, EaseTransTime);
+                
+				off = null;
+                href = null;				
+			};
+	
+	        $.each(bttns, function() {
+	            var href = $(this).attr('href');
+
+				if (href && href.indexOf("#") === 0)
+	                $(this).click( bttnClick );
+	
+	            href = null
+	        });
+
+	        bttns = null;
+
+			var thumbClick = function(e){
+				$(this).addClass('active').siblings().removeClass('active');
+				$(this).parent().parent().next().find('img').attr('src', $(this).attr('src'));
+			};
+			
+			$('#works').find('img').click( thumbClick );
+		}
+		
+	}
+	
+/*	
 	function pageReadMore(){
 //		if ( $('.page-read-more').length ){
 //			var readMore = $('.page-read-more'),
@@ -41,8 +200,8 @@
 				
 				e.preventDefault();
 				
-				$(this).fadeOut(guruTransTime);
-				rest.slideDown(guruTransTime * 2, function(){
+				$(this).fadeOut(EaseTransTime);
+				rest.slideDown(EaseTransTime * 2, function(){
 					$(window).trigger('resize');
 				});
 				
@@ -50,9 +209,9 @@
 			});;
 		}
 	}
+*/	
 	
-	
-	//this hampton project has a right and a left primary nav menu.
+	//this project has a right and a left primary nav menu.
 	function autoMenu(){
 		if ( $('#header nav').length ) {
 			
@@ -73,7 +232,7 @@
 					
 					//now calculate the right margin for the lis
 					//var margin = Math.floor( ( nav.width() - lisW ) / (lis.length - 1) - 3 );
-					var margin = Math.floor( ( maxWidth/2 - innerMargin - basePadding - lisW ) / (lis.length - 1) - 3 );
+					var margin = Math.floor( ( menuWidth/2 - innerMargin - basePadding - lisW ) / (lis.length - 1) - 3 );
 					
 					if( nav.is('#accessLeft') ){
 						//console.log('accessLeft', nav );

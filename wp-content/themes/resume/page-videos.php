@@ -10,8 +10,9 @@
 get_header(); ?>
 
 <?php  if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+<div id="easeVideoPlayer"></div>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+<article id="videos" <?php post_class(); ?>>
   <header class="wrap">
     <h1><span class="subtitle">Benjamin Allen</span> <span class="sep">|</span> <span class="subtitle small"><?php the_title(); ?></span></h1>
   </header>

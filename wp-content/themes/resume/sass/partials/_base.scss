@@ -39,18 +39,23 @@ $selected-background-color: lighten( #0761E2, 20% );  // bg-color for selected t
 
 $guru-color: #0761E2;
 
-$base-color: #444;
+//$base-color: #222;
+$base-color: #eee;
 
 //#666 to start
-$nav-link-color: #666;
+$nav-link-color: #eee;
+
+$nav-shadow: #333;
+
 
 $base-header-color: #bad;
-$base-button-color: #bada55;
+$base-button-color: #3C83DA;
 
-$base-button-contrast: #DF2F66;
+$base-button-contrast: #53A4DA;
 
-$base-grey: #e3e3e3;
+$base-grey: #aaa;
 
+//$base-bg: #eee;
 $base-bg: #222;
 $base-bg-light: #ECE2BC;
 
@@ -64,7 +69,7 @@ $base-width: 960px;
 $triangle-width: 10px;
 
 
-$base-transition-time: 0.1s;
+$base-transition-time: 0.05s;
 
 $box-bg: lighten($base-bg, 100%);
 
@@ -72,7 +77,8 @@ $base-font-size: 12px;
 $base-line-height: 18px;
 
 
-$header-height: 94px;
+$header-height: 50px;
+$home-header-height: 74px;
 
 
 @mixin base-bg-alpha( $a: 0.65 ){
