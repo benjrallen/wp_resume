@@ -8,7 +8,8 @@ article#front-page-entry.hentry{
 	text-align: center;
 
 	& .pic, & .entry-content, & .callOut{
-		display: inline-block;
+		//display: inline-block;
+		@include inline-block;
 		vertical-align: middle;
 	}
 	
@@ -16,8 +17,10 @@ article#front-page-entry.hentry{
 		//background: #bad;
 		
 		& .resumeBlock{
-			display: inline-block;
+			//display: inline-block;
+			@include inline-block;
 			vertical-align: middle;
+			*vertical-align: top;
 			padding-left: 2em;
 			
 			& a{
@@ -28,6 +31,9 @@ article#front-page-entry.hentry{
 				@include open-sans;
 				font-weight: 600;
 				color: lighten( $base-button-color, 50% );
+
+				*padding-top: 0.5em;
+
 
 				& span{
 					display: block;
@@ -103,8 +109,10 @@ article#front-page-entry.hentry{
 
 	& .fpPic{
 		border: 1px solid $base-color;
-		display: inline-block;
+		//display: inline-block;
+		@include inline-block;
 		vertical-align: middle;
+		
 		margin-right: 3em;
 		& img{
 			display: block;

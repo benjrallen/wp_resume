@@ -199,6 +199,8 @@ $triW: 6px;
 				bottom: 0;
 				border: $triW/2 solid lighten( $base-button-color, 25% );
 				border-bottom: $triW/2 solid transparent;
+				height: 0;
+				widht: 0;
 				
 				&.left{
 					border-left: $triW/2 solid transparent;
@@ -213,7 +215,8 @@ $triW: 6px;
 		}
 		
 		& span{
-			display: inline-block;
+			//display: inline-block;
+			@include inline-block;
 			vertical-align: middle;
 		}
 		& .line{
@@ -243,7 +246,8 @@ $triW: 6px;
 		height: $header-height;
 		
 		& .line{
-			display: inline-block;
+			//display: inline-block;
+			@include inline-block;
 			vertical-align: middle;
 			height: 100%;
 			width: 1px;

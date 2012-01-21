@@ -23,8 +23,9 @@ article.hentry{
 
 	& .sep, & .subtitle{
 		font-weight: 400;
-		display: inline-block;
-		vertical-align: middle;
+		//display: inline-block;
+		//vertical-align: middle;
+		@include inline-block;
 	}
 	& .page-title{
 		font-weight: 400;
@@ -187,14 +188,16 @@ article.hentry#videos{
 	& .entry-content{
 		width: 45%;
 		@include float-right;
-		display: inline-block;
+		//display: inline-block;
+		@include inline-block;
 		//@include padding-leader(2);
 		@include adjust-font-size-to( 20px );
 	}
 	
 	& #videoBlocks{
 		@include float-left;
-		display: inline-block;
+		//display: inline-block;
+		@include inline-block;
 		vertical-align: top;
 		width: 50%;
 	}
@@ -247,7 +250,8 @@ article.hentry#worksTop{
 	& .bttn{
 		padding-left: 1em;
 		padding-right: 1em;
-		display: inline-block;
+		//display: inline-block;
+		@include inline-block;
 		margin-right: 0.5em;
 		@include adjust-font-size-to( 14px, 1.5 );
 	}
@@ -263,10 +267,14 @@ article.hentry#worksTop{
 		border-bottom: 1px solid $base-grey;
 		@include padding-leader;
 		@include padding-trailer(2);
+		text-align: right;
 
 		& .left{
-			display: inline-block;
+			//display: inline-block;
+			//@include inline-block;
+			@include float-left;
 			width: 314px;
+			text-align: left;
 		}
 
 		& header, & .pics{
@@ -317,8 +325,9 @@ article.hentry#worksTop{
 		}
 		
 		& .big-pic{
-			@include float-right;
-			display: inline-block;
+			//@include float-right;
+//			display: inline-block;
+			@include inline-block;
 			vertical-align: top;
 			width: 640px;
 			
