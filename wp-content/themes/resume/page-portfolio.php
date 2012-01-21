@@ -48,6 +48,7 @@ get_header(); ?>
         
 			?>
 			<article id="<?php echo $post->post_name; ?>" class="work">
+		    <div class="clearfix"></div>
 			  <div class="left">
   			  <header>
   			    <h2 class="post-title"><?php the_title(); ?></h2>
@@ -82,7 +83,7 @@ get_header(); ?>
   			    ?>
   			    <div class="clearfix"></div>
   			  </div>
-				
+			    <div class="clearfix"></div>
 				</div>
 				
 				<div class="big-pic">

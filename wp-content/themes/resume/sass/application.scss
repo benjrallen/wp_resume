@@ -5,8 +5,8 @@
 $inner-content-padding: 20px;
 
 html, body{
-	height:100%;
-	width:100%;
+	//height:100%;
+	//width:100%;
 	display:block;
 }
 
@@ -119,6 +119,10 @@ $sidebar-width: 232px;
 	left: 0;
 	background: $base-bg url('../images/transparent-noise-8.png');
 	z-index: 0;
+	
+	&.lowest{
+		position: fixed;
+	}
 }
 
 .wrap{
@@ -131,8 +135,9 @@ $sidebar-width: 232px;
 	background-position: -350px 0;
 	height: 100px;
 	width: 50px;
-	display: inline-block;
-	vertical-align: middle;
+	//display: inline-block;
+	@include inline-block;
+	//vertical-align: middle;
 	@include opacity( 0.6 );
 	position: relative;
 }
@@ -142,7 +147,8 @@ $sidebar-width: 232px;
 }
 
 .sep{
-	display: inline-block;
+	//display: inline-block;
+	@include inline-block;
 	height: 8px;
 	width: 16px;
 	@include main-sprite;
@@ -232,7 +238,8 @@ $sidebar-width: 232px;
 		top:0;
 		z-index: 11;
 		max-height: 100%;
-		overflow-y: scroll;
+		overflow-y: auto;
+		margin-right: 1.4em;
 		
 		& header{
 			display: block;

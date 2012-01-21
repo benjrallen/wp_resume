@@ -87,7 +87,7 @@
 		  <div id="tilesEnd"></div>
     </div>
 
-		<div class="bgNoise"></div>
+		<div class="bgNoise lowest"></div>
 		<header id="header" role="banner">
 		  <div class="bgNoise"></div>
 			<?php //get_template_part('nav','primary'); ?>
