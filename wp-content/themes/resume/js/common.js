@@ -158,7 +158,7 @@
                 
 				var off = $("#" + href).offset();
                 
-				$('html, body').animate({scrollTop: off.top - topOff + 'px'}, EaseTransTime);
+				$('html, body').animate({scrollTop: off.top - topOff + 'px'}, 2 * EaseTransTime);
                 
 				off = null;
                 href = null;				
