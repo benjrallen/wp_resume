@@ -243,7 +243,6 @@ article.hentry#worksTop{
 	& div.wrap{
 		//background: #bad;
 		@include padding-leader(0.5);
-		@include padding-trailer(0.5);
 		border-top: 1px solid $base-grey;
 		border-bottom: 1px solid $base-grey;
 	}
@@ -253,12 +252,13 @@ article.hentry#worksTop{
 		@include inline-block;
 		margin-right: 0.5em;
 		@include adjust-font-size-to( 14px, 1.5 );
+		@include margin-trailer(0.5);
 	}
 }
 
 
 #works{
-	@include margin-leader(6);
+	@include margin-leader(7.9);
 	position: relative;
 	
 	& article{

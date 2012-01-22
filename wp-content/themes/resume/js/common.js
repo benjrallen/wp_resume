@@ -145,6 +145,9 @@
 			
 	        var bttns = $('#worksTop').find('a'),
 				topOff = $('#header').outerHeight() + $('#worksTop').outerHeight();
+
+			//set the margin on the top in case there are too many buttons pushing down the fixed positioning.
+			$('#works').css({ marginTop: $('#worksTop').outerHeight() - 18 });
 	
 			var bttnClick = function(e){
 				e.preventDefault();
