@@ -287,7 +287,7 @@
 
 	//	$options['favicon']
 		function add_favicon() {
-			echo '<link rel="shortcut icon" href="/favicon.ico" />'.PHP_EOL;
+			echo '<link rel="shortcut icon" href="/favicon.png" />'.PHP_EOL;
 		}
 
 	//	$options['favicon_ithing']
