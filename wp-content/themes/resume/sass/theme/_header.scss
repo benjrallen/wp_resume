@@ -17,6 +17,7 @@ $triW: 6px;
 
 		& h1, & h2{
 			height: $home-header-height + $triW;
+			width: 94px;
 		}
 
 		& nav{
@@ -150,7 +151,7 @@ $triW: 6px;
 		top: 0;
 		left: 0;
 		height: $header-height + $triW;
-		width: 98px;
+		width: 76px;
 		display: block;
 		z-index: 2;
 		margin-left: auto;
