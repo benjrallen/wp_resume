@@ -769,6 +769,7 @@ function get_location_list(){
 	return $html;
 }
 
+wp_deregister_script( 'comment-reply' );
 
 /** END BA Theme Specific Functions **/
 
