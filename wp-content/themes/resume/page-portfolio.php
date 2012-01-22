@@ -69,15 +69,19 @@ get_header(); ?>
   			        $big = false;
   			        foreach( $imgs as $img ) {
   			          $src = wp_get_attachment_image_src( $img->ID, 'project-img' );
+  			          $thumb = wp_get_attachment_image_src( $img->ID, 'project-thumb' );
   			          $class = '';
   			          if ( $ct == 0 ){
   			            $big = $src;
   			            $class = 'active';
   			          }
-  			          echo '<img src="'.$src[0].'" alt="" class="'.$class.'" />';
+  			          echo '<img src="'.$thumb[0].'" alt="" class="'.$class.'" full="'.$src[0].'" />';
 
   			          //print_r($src); echo '<br /><br />';
   			          $ct++;
+  			          
+  			          unset( $thumb );
+  			          unset( $src );
   			        }
   			      }
   			    ?>

@@ -144,10 +144,11 @@
 		if( $('#worksTop').length ){
 			
 	        var bttns = $('#worksTop').find('a'),
-				topOff = $('#header').outerHeight() + $('#worksTop').outerHeight();
+				topOff = $('#header').outerHeight() + $('#worksTop').outerHeight(),
+				works = $('#works');
 
 			//set the margin on the top in case there are too many buttons pushing down the fixed positioning.
-			$('#works').css({ marginTop: $('#worksTop').outerHeight() - 18 });
+			works.css({ marginTop: $('#worksTop').outerHeight() - 18 });
 	
 			var bttnClick = function(e){
 				e.preventDefault();
@@ -156,7 +157,7 @@
 				
 				href = href.substr(1, href.length);
                 
-				var off = $("#" + href).offset();
+				var off = works.find("#" + href).offset();
                 
 				$('html, body').animate({scrollTop: off.top - topOff + 'px'}, 2 * EaseTransTime);
                 
@@ -177,10 +178,28 @@
 
 			var thumbClick = function(e){
 				$(this).addClass('active').siblings().removeClass('active');
-				$(this).parent().parent().next().find('img').attr('src', $(this).attr('src'));
+				$(this).parent().parent().next().find('img').attr('src', $(this).attr('full'));
 			};
 			
-			$('#works').find('img').click( thumbClick );
+			works.find('img').click( thumbClick );
+			
+			//preload the big images
+			var pics = works.find('.pics').find('img');
+			
+			//console.log( pics );
+			
+			var preloadBigPics = function(){
+				var src = $(this).attr('full');
+				
+				var img = new Image();
+				img.src = src;
+				return;
+			};
+			
+			$.each( pics, preloadBigPics );
+			
+			pics = null;
+			works = null;
 		}
 		
 	}
