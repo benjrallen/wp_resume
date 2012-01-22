@@ -56,8 +56,8 @@
 ?>
 		<script type="text/javascript">
 			Modernizr.load([
-				{ load : ['//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js'] },
-				{ test: window.JSON, nope: Ease.TemplateUrl+'/js/json2.js' },
+				//{ load : ['//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js'] },
+				//{ test: window.JSON, nope: Ease.TemplateUrl+'/js/json2.js' },
 				/* plugins.js & common.js fordevelopment */
 				//{ load : Ease.TemplateUrl+'/js/plugins.js' },
 				//{ load : Ease.TemplateUrl+'/js/common.js' }
