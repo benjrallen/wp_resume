@@ -732,7 +732,7 @@ function get_location_list(){
 	$html = '<ul class="locationList">';
 	
 	$schools = 	get_posts(array(
-					'numberposts' => -1,
+					'posts_per_page' => -1,
 					'post_type' => 'ba_place',
 					'order' => 'ASC',
 					'orderby' => 'menu_order'

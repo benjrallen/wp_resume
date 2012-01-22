@@ -19,12 +19,12 @@ get_header(); ?>
 
 	$works = new WP_Query(array(
 		'post_type' => 'ba_work',
-		'numberposts' => -1,
+		'posts_per_page' => -1,
 		'order' => 'ASC',
 		'orderby' => 'menu_order title'
 	));
 
-	$ct = 1;
+  $ct = 1;
 
 	if ( $works->have_posts() ) :
     while ( $works->have_posts() ) : $works->the_post();
@@ -90,6 +90,7 @@ get_header(); ?>
 				  <?php
 				    if( $big ){
 		          echo '<img src="'.$big[0].'" alt="" />';
+		          unset( $big );
 				    }
 				  ?>
 				</div>
