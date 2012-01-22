@@ -303,15 +303,17 @@ article.hentry#worksTop{
 			@include padding-leader(0.5);
 			
 			& img{
-				//max-width: 70px;
+				//max-width: 125px;
 				//height: auto;
-				max-width: 125px;
+				max-width: 100px;
 				width: auto;
 				max-height: 125px;
 				width: auto;
 				border: 3px solid lighten( $base-bg, 20% );
-				@include float-left;
-				display: block;
+				//@include float-left;
+				//display: block;
+				@include inline-block;
+				vertical-align: top;
 				@include border-radius( 3px );
 				margin-right: 1em;
 				@include margin-trailer;
