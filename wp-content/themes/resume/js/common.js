@@ -157,7 +157,7 @@
 				
 				href = href.substr(1, href.length);
                 
-				var off = works.find("#" + href).offset();
+				var off = $('#works').find("#" + href).offset();
                 
 				$('html, body').animate({scrollTop: off.top - topOff + 'px'}, 2 * EaseTransTime);
                 
