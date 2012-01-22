@@ -341,6 +341,8 @@ article.hentry#worksTop{
 				border: 1px solid $base-grey;
 				@include border-radius( 3px );
 			}
+			
+			display: none;
 		}
 	}
 	

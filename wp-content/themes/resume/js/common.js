@@ -149,6 +149,8 @@
 
 			//set the margin on the top in case there are too many buttons pushing down the fixed positioning.
 			works.css({ marginTop: $('#worksTop').outerHeight() - 18 });
+			//show the big pic to start the loading
+			works.find('.big-pic img').show();
 	
 			var bttnClick = function(e){
 				e.preventDefault();
@@ -185,7 +187,6 @@
 			
 			//preload the big images
 			var pics = works.find('.pics').find('img');
-			
 			//console.log( pics );
 			
 			var preloadBigPics = function(){
