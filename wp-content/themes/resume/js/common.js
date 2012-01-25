@@ -135,7 +135,7 @@
 		if( $('#videos').length )
 			new EaseYouTubePlayer({
 				user: 'nakedincorners',
-				localCallUrl: Ease.TemplateUrl + 'js/videos.php',
+				localCallUrl: Ease.TemplateUrl + '/js/videos.php',
 				maxResults: 6 //google limit is 50			
 			});
 	}
