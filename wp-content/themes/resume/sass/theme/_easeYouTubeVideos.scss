@@ -25,7 +25,9 @@ $gv-transition-speed: 0.1s;
 		text-align: center;
 		
 		& .easeThumbBlock{
-			display: inline-block;
+			//display: inline-block;
+			@include inline-block;
+			vertical-align: top;
 			width: floor( (94% - $gv-thumb-block-spacing * 2 * $gv-num-columns) / $gv-num-columns );
 			vertical-align:top;
 			margin-left: $gv-thumb-block-spacing;

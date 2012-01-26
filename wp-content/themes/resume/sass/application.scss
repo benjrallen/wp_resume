@@ -157,7 +157,9 @@ $sidebar-width: 232px;
 	margin-right: 1em;
 	background-position: 0 -165px;
 }
-
+.lte7 .sep{
+	margin-bottom: 0.75em;
+}
 .clearfix{
 	@include pie-clearfix;
 }
